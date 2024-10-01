@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id = "dom">Click me</button>
+    <div>
+        <ul>
+            <li>
+                First
+            </li>
+            <li>
+                Second
+            </li>
+        </ul>
+    </div>
+    <ul>
+        <li>
+            Third
+        </li>
+        <li>
+            Four
+        </li>
+    </ul>
+    <script>
+        let clicked = false;
+        const btn = document.getElementById("dom");
+        console.log(btn.innerText);
+        btn.addEventListener("click", function(){
+            if (!clicked)
+            {
+                document.body.style.background = "#4AE46D";
+                clicked = true;
+            }
+            else
+            {
+                document.body.style.background = "#FFFFFF";
+                clicked = false;
+                document.get
+            }
+        });
+        console.log(document.querySelector("ul > li").innerText);
+    </script>
+    <script src = "script.js"></script>
+</body>
+</html>
