@@ -1,0 +1,19 @@
+/* если просто сказать имя, то тогда стили применятся к тегу. Можно таким образом создавать свои собственные теги */
+h1
+{
+    color:blue;
+    border: 2px solid chartreuse;
+}
+/* Этот стиль не применится, т.к. он имеет ниже приоритет, чем стиль в атрибуте style */
+p
+{
+    color: blue;
+}
+mytag
+{
+    color: blueviolet;
+    font-size: 40px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    background-color: forestgreen;
+    padding: 50px;
+}
