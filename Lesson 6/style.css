@@ -1,0 +1,13 @@
+.form-autorazation
+{
+    transform: translate(0, calc(50vh - 200px)); /* 1vh 1% от высоты экрана физического разрешения */
+    background-image: var(--bs-gradient);
+}
+
+@media (min-width: 1200px)
+{
+    .form-autorazation
+    {
+        width: 50%!important;
+    }
+}
