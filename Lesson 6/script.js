@@ -2,7 +2,9 @@ const base_url = "https://api.balldontlie.io/v1"
 
 async function takeData(endpoint) 
 {
-  const url = base_url + '/' + endpoint;
+  let url = base_url + '/' + endpoint;
+  if (endpoint === "games")
+    url += '?seasons[]=2024';
   let response = 
   fetch(url, {
       headers:
@@ -13,8 +15,15 @@ async function takeData(endpoint)
   return response;
 }
 
+async function removeTable() {
+  const tablePlace = document.getElementById("tablePlace");
+  if (tablePlace.firstChild != null)
+    tablePlace.removeChild(tablePlace.firstChild);
+}
+
 async function createTableWithData(endpoint)
 {
+  removeTable();
   const header = document.getElementById("headName");
   header.innerText = endpoint;
   const table = document.createElement('table');
@@ -22,7 +31,7 @@ async function createTableWithData(endpoint)
 
   //get data
   let jsonData = await takeData(endpoint);
-  
+  console.log(jsonData);
   // create thead
   const thead = document.createElement('thead');
   const theadRow = document.createElement('tr');
@@ -43,14 +52,18 @@ async function createTableWithData(endpoint)
     const tr = document.createElement('tr');
     Object.getOwnPropertyNames(jsonData.data[0]).forEach(element => {
       const td = document.createElement('td');
-      td.innerText = jsonData.data[i][element];
+      if (typeof(jsonData.data[i][element]) == 'object' && jsonData.data[i][element] != null)
+        td.innerText = jsonData.data[i][element]['name'];
+      else
+        td.innerText = jsonData.data[i][element];
       tr.appendChild(td);
     });
     tbody.appendChild(tr);
   }
-  
-  return table;
+
+  const tablePlace = document.getElementById("tablePlace");
+  tablePlace.appendChild(table);
 }
 
-const tablePlace = document.getElementById("tablePlace");
-let table = createTableWithData('players').then(result => tablePlace.appendChild(result));
+
+createTableWithData('players');
